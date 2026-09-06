@@ -37,23 +37,28 @@ using namespace SVF;
 using namespace llvm;
 using namespace std;
 
-/// TODO: Implement your context-sensitive ICFG traversal here to traverse each program path
-/// by matching calls and returns while maintaining a `callstack`.
-/// Sources and sinks are identified by implementing and calling `readSrcSnkFromFile`
-/// Each path including loops, qualified by a `callstack`, should only be traversed once using a `visited` set.
-/// You will need to collect each path from src to snk and then add the path to the `paths` set.
-/// Add each path (a sequence of node IDs) as a string into std::set<std::string> paths
-/// in the format "START->1->2->4->5->END", where -> indicate an ICFGEdge connects two ICFGNode IDs
-void ICFGTraversal::reachability(const ICFGNode* src, const ICFGNode* dst) {
-	
-}
-
 /// TODO: Implement your code to parse the two lines to identify sources and sinks from `SrcSnk.txt` for your
 /// reachability analysis The format in SrcSnk.txt is in the form of
 /// line 1 for sources  "{ api1 api2 api3 }"
 /// line 2 for sinks    "{ api1 api2 api3 }"
 void ICFGTraversal::readSrcSnkFromFile(const string& filename) {
 	
+
+}
+
+/// TODO: Convert each collected ICFG path into a string and insert it into
+/// `std::set<std::string> paths`. The path should use the format
+/// "START->1->2->4->5->END", where each pair of adjacent node IDs is connected
+/// by an ICFG edge, similar to Assignment 2.
+void ICFGTraversal::collectICFGPath(std::vector<unsigned>& path) {
+
+}
+
+/// TODO: Implement context-sensitive ICFG traversal from `src` to `snk` by
+/// matching call and return edges while maintaining a `callstack`. Each path,
+/// including loops and qualified by its callstack, should only be traversed
+/// once using `visited`. Call `collectICFGPath` for every reachable path.
+void ICFGTraversal::reachability(const ICFGNode* src, const ICFGNode* snk) {
 
 }
 

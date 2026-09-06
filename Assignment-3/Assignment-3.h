@@ -80,14 +80,17 @@ class ICFGTraversal {
 	ICFGTraversal(SVFIR* p)
 	: pag(p) {}
 
-	/// TODO: to be implemented context sensitive reachability
-	void reachability(const ICFGNode* curNode, const ICFGNode* sink);
-
-	// Return true if two pointers are aliases
-	bool aliasCheck(const CallICFGNode* src, const CallICFGNode* snk);
-
-	// TODO: Source and sink function names read from SrcSnk.txt
+	/// TODO: Configure source and sink function names from SrcSnk.txt
 	void readSrcSnkFromFile(const std::string& filename);
+
+	/// TODO: Convert and store a collected ICFG path
+	void collectICFGPath(std::vector<unsigned>& path);
+
+	/// TODO: Perform context-sensitive reachability and collect reachable paths
+	void reachability(const ICFGNode* src, const ICFGNode* snk);
+
+	/// TODO: Return true if the source return value aliases a sink argument
+	bool aliasCheck(const CallICFGNode* src, const CallICFGNode* snk);
 
 	// The driver method for taint checking
 	void taintChecking();
