@@ -36,11 +36,34 @@ using namespace std;
 /// Print the path in the format "START: 1->2->4->5->END", where -> indicate an edge connecting two node IDs
 void GraphTraversal::printPath(std::vector<const Node *> &path)
 {
-    
-};
+    std::string result = "START: ";
+    for (size_t i = 0; i < path.size(); i++) {
+        result += std::to_string(path[i]->getNodeID());
+        result += "->";
+    }
+    result += "END";
 
-/// TODO: Implement your depth first search here to traverse each program path (once for any loop) from src to dst
+    paths.insert(result);
+    std::cout << result << std::endl;
+}
+
+/// Depth first search to traverse each program path (once for any loop) from src to dst
 void GraphTraversal::DFS(set<const Node *> &visited, vector<const Node *> &path, const Node *src, const Node *dst)
 {
-    
+    visited.insert(src);
+    path.push_back(src);
+
+    if (src == dst) {
+        printPath(path);
+    } else {
+        for (const Edge *e : src->getOutEdges()) {
+            const Node *next = e->getDst();
+            if (visited.find(next) == visited.end()) {
+                DFS(visited, path, next, dst);
+            }
+        }
+    }
+
+    visited.erase(src);
+    path.pop_back();
 }
